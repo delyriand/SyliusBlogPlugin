@@ -1,0 +1,9 @@
+sylius_twig_hooks:
+    hooks:
+        'sylius_shop.base.header.top_bar':
+            monsieurbiz_blog:
+                template: '@MonsieurBizSyliusBlogPlugin/Shop/Layout/Topbar/_blogLink.html.twig'
+                priority: 150
+            monsieurbiz_case_study:
+                template: '@MonsieurBizSyliusBlogPlugin/Shop/Layout/Topbar/_caseStudyLink.html.twig'
+                priority: 140
