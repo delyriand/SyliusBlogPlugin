@@ -31,6 +31,8 @@ sylius_grid:
                     sortable: ~
                     options:
                         template: "@SyliusAdmin/shared/grid/field/boolean.html.twig"
+                        vars:
+                            th_class: "text-center"
             actions:
                 main:
                     create:
