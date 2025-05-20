@@ -95,4 +95,9 @@ final class ArticleType extends AbstractResourceType
 
         $builder->get('authors')->addModelTransformer(new CollectionToArrayTransformer());
     }
+
+    public function getBlockPrefix(): string
+    {
+        return 'monsieurbiz_blog_article';
+    }
 }

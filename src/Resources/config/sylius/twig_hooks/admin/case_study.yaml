@@ -1,0 +1,123 @@
+sylius_twig_hooks:
+    hooks:
+        'sylius_admin.case_study.create.content':
+            form:
+                component: 'sylius_admin:monsieurbiz_blog:article:form'
+                props:
+                    resource: '@=_context.resource'
+                    form: '@=_context.form'
+                    template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form.html.twig'
+                configuration:
+                    render_rest: false
+                priority: 0
+
+        'sylius_admin.case_study.create.content.form.sections':
+            general:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/general.html.twig'
+                priority: 200
+            translations:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/translations.html.twig'
+                priority: 100
+
+        'sylius_admin.case_study.create.content.form.sections.general':
+            default:
+                enabled: false
+            enabled:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/general/enabled.html.twig'
+                priority: 600
+            channels:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/general/channels.html.twig'
+                priority: 500
+            authors:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/general/authors.html.twig'
+                priority: 400
+            tags:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/general/tags.html.twig'
+                priority: 300
+            image:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/general/image.html.twig'
+                priority: 200
+            video:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/general/video.html.twig'
+                priority: 100
+            thumbnail:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/general/thumbnail.html.twig'
+                priority: 0
+
+        'sylius_admin.case_study.create.content.form.sections.translations':
+            title:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/translations/title.html.twig'
+                priority: 600
+            slug:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/translations/slug.html.twig'
+                priority: 500
+            description:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/translations/description.html.twig'
+                priority: 400
+            content:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/translations/content.html.twig'
+                priority: 300
+            seo:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/translations/seo.html.twig'
+                priority: 200
+
+
+        'sylius_admin.case_study.update.content':
+            form:
+                component: 'sylius_admin:monsieurbiz_blog:article:form'
+                props:
+                    resource: '@=_context.resource'
+                    form: '@=_context.form'
+                    template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form.html.twig'
+                configuration:
+                    render_rest: false
+                priority: 0
+
+        'sylius_admin.case_study.update.content.form.sections':
+            general:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/general.html.twig'
+                priority: 200
+            translations:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/translations.html.twig'
+                priority: 100
+
+        'sylius_admin.case_study.update.content.form.sections.general':
+            default:
+                enabled: false
+            enabled:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/general/enabled.html.twig'
+                priority: 600
+            channels:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/general/channels.html.twig'
+                priority: 500
+            authors:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/general/authors.html.twig'
+                priority: 400
+            tags:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/general/tags.html.twig'
+                priority: 300
+            image:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/general/image.html.twig'
+                priority: 200
+            video:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/general/video.html.twig'
+                priority: 100
+            thumbnail:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/general/thumbnail.html.twig'
+
+        'sylius_admin.case_study.update.content.form.sections.translations':
+            title:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/translations/title.html.twig'
+                priority: 600
+            slug:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/translations/slug.html.twig'
+                priority: 500
+            description:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/translations/description.html.twig'
+                priority: 400
+            content:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/translations/content.html.twig'
+                priority: 300
+            seo:
+                template: '@MonsieurBizSyliusBlogPlugin/Admin/Article/form/sections/translations/seo.html.twig'
+                priority: 200

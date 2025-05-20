@@ -66,3 +66,14 @@ services:
             - 'MonsieurBiz\SyliusBlogPlugin\Form\Type\TagType'
         tags:
             - { name: 'sylius.live_component.admin', key: 'sylius_admin:monsieurbiz_blog:tag:form' }
+
+    sylius_admin.monsieurbiz_blog.twig.component.article.form:
+        autoconfigure: false
+        class: MonsieurBiz\SyliusBlogPlugin\Component\ArticleFormComponent
+        arguments:
+            - '@monsieurbiz_blog.repository.article'
+            - '@form.factory'
+            - '%monsieurbiz_blog.model.article.class%'
+            - 'MonsieurBiz\SyliusBlogPlugin\Form\Type\ArticleType'
+        tags:
+            - { name: 'sylius.live_component.admin', key: 'sylius_admin:monsieurbiz_blog:article:form' }
