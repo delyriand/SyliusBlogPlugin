@@ -1,0 +1,12 @@
+{%- macro label(state) -%}
+    {% set label = 'monsieurbiz_blog.ui.' ~ state %}
+
+    {% set state_badge = {
+        (constant('MonsieurBiz\\SyliusBlogPlugin\\Entity\\ArticleInterface::STATE_DRAFT')): 'bg-blue-lt',
+        (constant('MonsieurBiz\\SyliusBlogPlugin\\Entity\\ArticleInterface::STATE_PUBLISHED')): 'bg-green-lt',
+    } %}
+
+    <span class="badge {{ state_badge[state]|default('') }}">
+        {{ label|trans|title }}
+    </span>
+{%- endmacro -%}

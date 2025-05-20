@@ -37,7 +37,7 @@ monsieurbiz_blog_admin_article_create:
         _sylius:
             section: admin
             permission: true
-            template: "@SyliusAdmin/Crud/create.html.twig"
+            template: "@SyliusAdmin/shared/crud/create.html.twig"
             factory:
                 method: createNewWithType
                 arguments:
@@ -68,7 +68,7 @@ monsieurbiz_blog_admin_case_study_create:
         _sylius:
             section: admin
             permission: true
-            template: "@SyliusAdmin/Crud/create.html.twig"
+            template: "@SyliusAdmin/shared/crud/create.html.twig"
             factory:
                 method: ["expr:service('monsieurbiz_blog.factory.article')", "createNewWithType"]
                 arguments:

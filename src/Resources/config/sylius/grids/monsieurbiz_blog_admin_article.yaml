@@ -47,20 +47,18 @@ sylius_grid:
                     type: twig
                     label: sylius.ui.channels
                     options:
-                        template: '@SyliusAdmin/Grid/Field/_channels.html.twig'
+                        template: '@SyliusAdmin/shared/grid/field/channels.html.twig'
                 enabled:
                     type: twig
                     label: sylius.ui.enabled
                     options:
-                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+                        template: "@SyliusAdmin/shared/grid/field/boolean.html.twig"
                 state:
                     type: twig
                     label: sylius.ui.state
                     sortable: ~
                     options:
-                        template: "@SyliusUi/Grid/Field/state.html.twig"
-                        vars:
-                            labels: "@MonsieurBizSyliusBlogPlugin/Admin/Article/State"
+                        template: '@MonsieurBizSyliusBlogPlugin/Admin/Grid/Field/tag_state.html.twig'
                 updatedAt:
                     type: datetime
                     sortable: ~
@@ -78,16 +76,17 @@ sylius_grid:
                     publish:
                         type: apply_transition
                         label: monsieurbiz_blog.ui.publish
-                        icon: check
+                        icon: tabler:send
                         options:
                             link:
                                 route: monsieurbiz_blog_admin_article_update_state
                                 parameters:
                                     id: resource.id
                                     state: !php/const \MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface::TRANSITION_PUBLISH
-                            class: green
+                            class: btn-success
                             transition: !php/const \MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface::TRANSITION_PUBLISH
                             graph: !php/const \MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface::GRAPH
+                            show_disabled: false
                 bulk:
                     delete:
                         type: delete
@@ -99,7 +98,7 @@ sylius_grid:
                     class: '%monsieurbiz_blog.model.article.class%'
                     repository:
                         method: createListQueryBuilderByType
-                        arguments: 
+                        arguments:
                             - "expr:service('sylius.context.locale').getLocaleCode()"
                             - !php/const MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface::BLOG_TYPE
             <<: *monsieurbiz_blog_admin_article

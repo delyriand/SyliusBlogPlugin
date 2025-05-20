@@ -30,7 +30,9 @@ monsieurbiz_blog:
         new_tag: Nouveau tag
         edit_tag: Modifier le tag
         manage_your_blog_tags: Gérer vos tags de blog
+        article: Article
         articles: Articles
+        case_study: Étude de cas
         case_studies: Études de cas
         new_article: Nouvel article
         edit_article: Modifier l'article
