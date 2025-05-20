@@ -24,26 +24,43 @@ final class AdminMenuListener
         $blogMenu = $menu
             ->addChild('monsieurbiz-blog')
             ->setLabel('monsieurbiz_blog.ui.menu_blog')
+            ->setLabelAttribute('icon', 'tabler:news')
         ;
 
-        $blogMenu->addChild('monsieurbiz-blog-tags', ['route' => 'monsieurbiz_blog_admin_tag_index'])
+        $blogMenu
+            ->addChild('monsieurbiz-blog-tags', ['route' => 'monsieurbiz_blog_admin_tag_index', 'extras' => ['routes' => [
+                'monsieurbiz_blog_admin_tag_create',
+                'monsieurbiz_blog_admin_tag_update',
+            ]]])
             ->setLabel('monsieurbiz_blog.ui.tags')
-            ->setLabelAttribute('icon', 'grid layout')
+            ->setLabelAttribute('icon', 'tabler:layout-grid')
         ;
 
-        $blogMenu->addChild('monsieurbiz-blog-articles-blog', ['route' => 'monsieurbiz_blog_admin_article_index'])
+        $blogMenu
+            ->addChild('monsieurbiz-blog-articles-blog', ['route' => 'monsieurbiz_blog_admin_article_index', 'extras' => ['routes' => [
+                'monsieurbiz_blog_admin_article_create',
+                'monsieurbiz_blog_admin_article_update',
+            ]]])
             ->setLabel('monsieurbiz_blog.ui.articles')
-            ->setLabelAttribute('icon', 'newspaper')
+            ->setLabelAttribute('icon', 'tabler:news')
         ;
 
-        $blogMenu->addChild('monsieurbiz-blog-articles-case-study', ['route' => 'monsieurbiz_blog_admin_case_study_index'])
+        $blogMenu
+            ->addChild('monsieurbiz-blog-articles-case-study', ['route' => 'monsieurbiz_blog_admin_case_study_index', 'extras' => ['routes' => [
+                'monsieurbiz_blog_admin_case_study_create',
+                'monsieurbiz_blog_admin_case_study_update',
+            ]]])
             ->setLabel('monsieurbiz_blog.ui.case_studies')
-            ->setLabelAttribute('icon', 'crosshairs')
+            ->setLabelAttribute('icon', 'tabler:crosshair')
         ;
 
-        $blogMenu->addChild('monsieurbiz-blog-authors', ['route' => 'monsieurbiz_blog_admin_author_index'])
+        $blogMenu
+            ->addChild('monsieurbiz-blog-authors', ['route' => 'monsieurbiz_blog_admin_author_index', 'extras' => ['routes' => [
+                'monsieurbiz_blog_admin_author_create',
+                'monsieurbiz_blog_admin_author_update',
+            ]]])
             ->setLabel('monsieurbiz_blog.ui.authors')
-            ->setLabelAttribute('icon', 'user')
+            ->setLabelAttribute('icon', 'tabler:user')
         ;
     }
 }
