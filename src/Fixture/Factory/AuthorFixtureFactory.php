@@ -17,9 +17,9 @@ use Closure;
 use Faker\Factory;
 use Faker\Generator;
 use MonsieurBiz\SyliusBlogPlugin\Entity\AuthorInterface;
-use MonsieurBiz\SyliusMediaManagerPlugin\Exception\CannotReadCurrentFolderException;
-use MonsieurBiz\SyliusMediaManagerPlugin\Helper\FileHelperInterface;
-use MonsieurBiz\SyliusMediaManagerPlugin\Model\File;
+use MonsieurBiz\SyliusMediaManagerPlugin\Exception\FileNotFoundException;
+use MonsieurBiz\SyliusMediaManagerPlugin\Operator\DirectoryOperatorInterface;
+use MonsieurBiz\SyliusMediaManagerPlugin\Repository\FileRepositoryInterface;
 use Sylius\Bundle\CoreBundle\Fixture\Factory\AbstractExampleFactory;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Symfony\Component\Config\FileLocatorInterface;
@@ -36,7 +36,9 @@ final class AuthorFixtureFactory extends AbstractExampleFactory
     public function __construct(
         private FactoryInterface $authorFactory,
         private FileLocatorInterface $fileLocator,
-        private FileHelperInterface $fileHelper,
+        private FileRepositoryInterface $fileRepository,
+        private DirectoryOperatorInterface $directoryOperator,
+        private string $publicDir,
     ) {
         $this->faker = Factory::create();
 
@@ -104,25 +106,20 @@ final class AuthorFixtureFactory extends AbstractExampleFactory
         }
 
         $file = new UploadedFile($sourcePath, basename($sourcePath));
-        $filename = $this->fileHelper->upload($file, 'author', 'gallery/images');
+        $absoluteFolder = $this->publicDir . '/media/gallery/images/author/';
+        $this->directoryOperator->addUploadedFile($absoluteFolder, $file);
 
-        return 'gallery/images/author/' . $filename;
+        return 'gallery/images/author/' . $file->getClientOriginalName();
     }
 
     private function findExistingImage(string $filename): ?string
     {
-        try {
-            $files = $this->fileHelper->list('author', 'gallery/images');
-        } catch (CannotReadCurrentFolderException) {
-            $this->fileHelper->createFolder('author', '', 'gallery/images'); // Create the folder if it does not exist
-            $files = [];
-        }
+        $absoluteFolder = $this->publicDir . '/media/gallery/images/author/';
 
-        /** @var File $file */
-        foreach ($files as $file) {
-            if ($filename === $file->getName()) {
-                return 'gallery/images/' . $file->getPath();
-            }
+        try {
+            return $this->fileRepository->findOneFromPath($absoluteFolder . $filename)->getPath();
+        } catch (FileNotFoundException) {
+            $this->directoryOperator->createDirectory($absoluteFolder); // Create the folder if it does not exist
         }
 
         return null;

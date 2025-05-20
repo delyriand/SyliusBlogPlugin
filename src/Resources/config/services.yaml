@@ -48,7 +48,9 @@ services:
         arguments:
             $fileLocator: '@file_locator'
             $defaultLocaleCode: '%locale%'
+            $publicDir: '%sylius_core.public_dir%'
 
     MonsieurBiz\SyliusBlogPlugin\Fixture\Factory\AuthorFixtureFactory:
         arguments:
             $fileLocator: '@file_locator'
+            $publicDir: '%sylius_core.public_dir%'

@@ -21,10 +21,10 @@ use Faker\Generator;
 use MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface;
 use MonsieurBiz\SyliusBlogPlugin\Entity\ArticleTranslationInterface;
 use MonsieurBiz\SyliusBlogPlugin\Repository\TagRepositoryInterface;
-use MonsieurBiz\SyliusMediaManagerPlugin\Exception\CannotReadCurrentFolderException;
-use MonsieurBiz\SyliusMediaManagerPlugin\Helper\FileHelperInterface;
-use MonsieurBiz\SyliusMediaManagerPlugin\Model\File;
-use SM\Factory\FactoryInterface as StateMachineFactoryInterface;
+use MonsieurBiz\SyliusMediaManagerPlugin\Exception\FileNotFoundException;
+use MonsieurBiz\SyliusMediaManagerPlugin\Operator\DirectoryOperatorInterface;
+use MonsieurBiz\SyliusMediaManagerPlugin\Repository\FileRepositoryInterface;
+use Sylius\Abstraction\StateMachine\StateMachineInterface;
 use Sylius\Bundle\CoreBundle\Fixture\Factory\AbstractExampleFactory;
 use Sylius\Bundle\CoreBundle\Fixture\OptionsResolver\LazyOption;
 use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
@@ -53,13 +53,15 @@ final class ArticleFixtureFactory extends AbstractExampleFactory
         private FactoryInterface $articleFactory,
         private FactoryInterface $articleTranslationFactory,
         private TagRepositoryInterface $tagRepository,
-        private StateMachineFactoryInterface $stateMachineFactory,
+        private StateMachineInterface $stateMachineFactory,
         private RepositoryInterface $localeRepository,
         private ChannelRepositoryInterface $channelRepository,
         private RepositoryInterface $authorRepository,
         private FileLocatorInterface $fileLocator,
-        private FileHelperInterface $fileHelper,
+        private FileRepositoryInterface $fileRepository,
+        private DirectoryOperatorInterface $directoryOperator,
         private string $defaultLocaleCode,
+        private string $publicDir,
     ) {
         $this->faker = Factory::create();
 
@@ -237,7 +239,7 @@ final class ArticleFixtureFactory extends AbstractExampleFactory
 
     private function applyTransition(ArticleInterface $article, string $transition): void
     {
-        $this->stateMachineFactory->get($article, ArticleInterface::GRAPH)->apply($transition);
+        $this->stateMachineFactory->apply($article, ArticleInterface::GRAPH, $transition);
     }
 
     private function getLocales(): iterable
@@ -278,25 +280,20 @@ final class ArticleFixtureFactory extends AbstractExampleFactory
         }
 
         $file = new UploadedFile($sourcePath, basename($sourcePath));
-        $filename = $this->fileHelper->upload($file, 'blog', 'gallery/' . $folder);
+        $absoluteFolder = $this->publicDir . '/media/gallery/' . $folder . '/blog/';
+        $this->directoryOperator->addUploadedFile($absoluteFolder, $file);
 
-        return 'gallery/' . $folder . '/blog/' . $filename;
+        return 'gallery/' . $folder . '/blog/' . $file->getClientOriginalName();
     }
 
     private function findExistingFile(string $filename, string $folder): ?string
     {
-        try {
-            $files = $this->fileHelper->list('blog', 'gallery/' . $folder);
-        } catch (CannotReadCurrentFolderException) {
-            $this->fileHelper->createFolder('blog', '', 'gallery/' . $folder); // Create the folder if it does not exist
-            $files = [];
-        }
+        $absoluteFolder = $this->publicDir . '/media/gallery/' . $folder . '/blog/';
 
-        /** @var File $file */
-        foreach ($files as $file) {
-            if ($filename === $file->getName()) {
-                return 'gallery/' . $folder . '/' . $file->getPath();
-            }
+        try {
+            return $this->fileRepository->findOneFromPath($absoluteFolder . $filename)->getPath();
+        } catch (FileNotFoundException) {
+            $this->directoryOperator->createDirectory($absoluteFolder); // Create the folder if it does not exist
         }
 
         return null;
