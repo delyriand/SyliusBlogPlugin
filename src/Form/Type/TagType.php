@@ -35,4 +35,9 @@ final class TagType extends AbstractResourceType
             ])
         ;
     }
+
+    public function getBlockPrefix(): string
+    {
+        return 'monsieurbiz_blog_tag';
+    }
 }

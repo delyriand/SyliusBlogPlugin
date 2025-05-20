@@ -6,7 +6,7 @@ services:
 
     MonsieurBiz\SyliusBlogPlugin\:
         resource: '../../*'
-        exclude: '../../{Entity,Migrations}'
+        exclude: '../../{Component,Entity,Migrations}'
 
     # Add menu item in admin panel
     MonsieurBiz\SyliusBlogPlugin\EventListener\AdminMenuListener:
@@ -54,3 +54,15 @@ services:
         arguments:
             $fileLocator: '@file_locator'
             $publicDir: '%sylius_core.public_dir%'
+
+    # Live components
+    sylius_admin.monsieurbiz_blog.twig.component.tag.form:
+        autoconfigure: false
+        class: MonsieurBiz\SyliusBlogPlugin\Component\TagFormComponent
+        arguments:
+            - '@monsieurbiz_blog.repository.tag'
+            - '@form.factory'
+            - '%monsieurbiz_blog.model.tag.class%'
+            - 'MonsieurBiz\SyliusBlogPlugin\Form\Type\TagType'
+        tags:
+            - { name: 'sylius.live_component.admin', key: 'sylius_admin:monsieurbiz_blog:tag:form' }

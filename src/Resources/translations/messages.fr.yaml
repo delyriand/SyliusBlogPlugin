@@ -25,6 +25,7 @@ monsieurbiz_blog:
             image: Image
     ui:
         menu_blog: Blog
+        tag: Tag
         tags: Tags
         new_tag: Nouveau tag
         edit_tag: Modifier le tag
