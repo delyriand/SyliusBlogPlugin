@@ -27,7 +27,7 @@ final class AuthorType extends AbstractResourceType
     {
         $builder
             ->add('name', TextType::class, [
-                'required' => false,
+                'required' => true,
                 'label' => 'monsieurbiz_blog.form.author.name',
             ])
             ->add('image', ImageType::class, [

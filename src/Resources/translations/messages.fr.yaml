@@ -39,6 +39,7 @@ monsieurbiz_blog:
         draft: Brouillon
         published: Publié
         see_more_articles: Voir plus d'articles
+        author: Auteur
         authors: Auteurs
         new_author: Nouvel auteur
         edit_author: Modifier l'auteur

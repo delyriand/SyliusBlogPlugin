@@ -39,6 +39,7 @@ monsieurbiz_blog:
         draft: Draft
         published: Published
         see_more_articles: See more articles
+        author: Author
         authors: Authors
         new_author: New author
         edit_author: Edit author

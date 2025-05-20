@@ -57,7 +57,7 @@ monsieurbiz_blog_admin_article:
         section: admin
         alias: monsieurbiz_blog.article
         path: /blog/articles
-        templates: "@SyliusAdmin/Crud"
+        templates: "@SyliusAdmin\\shared\\crud"
         redirect: index
         except: ['show', 'create']
         grid: monsieurbiz_blog_admin_article_blog
@@ -88,7 +88,7 @@ monsieurbiz_blog_admin_case_study:
         section: admin
         alias: monsieurbiz_blog.case_study
         path: /blog/case-studies
-        templates: "@SyliusAdmin/Crud"
+        templates: "@SyliusAdmin\\shared\\crud"
         redirect: index
         except: ['show', 'create']
         grid: monsieurbiz_blog_admin_article_case_study
@@ -134,11 +134,8 @@ monsieurbiz_blog_admin_author:
         section: admin
         alias: monsieurbiz_blog.author
         path: /blog/authors
-        templates: "@SyliusAdmin/Crud"
-        redirect: index
+        templates: "@SyliusAdmin\\shared\\crud"
+        redirect: update
         except: ['show']
         grid: monsieurbiz_blog_admin_author
-        vars:
-            index:
-                icon: 'user'
     type: sylius.resource
