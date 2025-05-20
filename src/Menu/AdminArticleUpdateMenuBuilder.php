@@ -16,14 +16,14 @@ namespace MonsieurBiz\SyliusBlogPlugin\Menu;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface;
-use SM\Factory\FactoryInterface as StateMachineFactoryInterface;
+use Sylius\Abstraction\StateMachine\StateMachineInterface;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 final class AdminArticleUpdateMenuBuilder
 {
     public function __construct(
         private FactoryInterface $factory,
-        private StateMachineFactoryInterface $stateMachineFactory,
+        private StateMachineInterface $stateMachine,
         private CsrfTokenManagerInterface $csrfTokenManager,
     ) {
     }
@@ -37,8 +37,7 @@ final class AdminArticleUpdateMenuBuilder
             return $menu;
         }
 
-        $stateMachine = $this->stateMachineFactory->get($article, ArticleInterface::GRAPH);
-        if ($stateMachine->can(ArticleInterface::TRANSITION_PUBLISH)) {
+        if ($this->stateMachine->can($article, ArticleInterface::GRAPH, ArticleInterface::TRANSITION_PUBLISH)) {
             $menu
                 ->addChild('publish', [
                     'route' => 'monsieurbiz_blog_admin_article_update_state',
