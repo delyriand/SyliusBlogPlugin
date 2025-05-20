@@ -1,20 +1,18 @@
-winzou_state_machine:
-    monsieurbiz_blog_article:
-        class: "%monsieurbiz_blog.model.article.class%"
-        property_path: state
-        graph: monsieurbiz_blog_article
-        state_machine_class: "%sylius.state_machine.class%"
-        states:
-            draft: ~
-            published: ~
-        transitions:
-            publish:
-                from: [draft, ready]
-                to: published
-        callbacks:
-            after:
-                monsieurbiz_blog_article_save_publish_date:
-                    on: ["publish"]
-                    do: ["object", "publish"]
-                    args: ["object"]
-                    priority: -100
+framework:
+    workflows:
+        !php/const MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface::GRAPH:
+            type: state_machine
+            marking_store:
+                type: method
+                property: state
+            supports:
+                - MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface
+            initial_marking: !php/const MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface::STATE_DRAFT
+            places:
+                - !php/const MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface::STATE_DRAFT
+                - !php/const MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface::STATE_PUBLISHED
+            transitions:
+                !php/const MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface::TRANSITION_PUBLISH:
+                    from:
+                        - !php/const MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface::STATE_DRAFT
+                    to: !php/const MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface::STATE_PUBLISHED
