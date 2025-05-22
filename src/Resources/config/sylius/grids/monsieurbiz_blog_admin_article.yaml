@@ -42,7 +42,7 @@ sylius_grid:
                     type: twig
                     label: monsieurbiz_blog.form.article.authors
                     options:
-                        template: '@MonsieurBizSyliusBlogPlugin/Admin/Grid/Field/_authors.html.twig'
+                        template: '@MonsieurBizSyliusBlogPlugin/Admin/Grid/Field/authors.html.twig'
                 channels:
                     type: twig
                     label: sylius.ui.channels
@@ -62,7 +62,7 @@ sylius_grid:
                     label: sylius.ui.state
                     sortable: ~
                     options:
-                        template: '@MonsieurBizSyliusBlogPlugin/Admin/Grid/Field/tag_state.html.twig'
+                        template: '@MonsieurBizSyliusBlogPlugin/Admin/Grid/Field/state.html.twig'
                 updatedAt:
                     type: datetime
                     sortable: ~
