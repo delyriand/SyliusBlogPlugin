@@ -19,7 +19,7 @@ use Symfony\Component\Workflow\Event\CompletedEvent;
 use Webmozart\Assert\Assert;
 
 #[AsEventListener(
-    event: 'workflow.monsieurbiz_blog_article.completed.published'
+    event: 'workflow.monsieurbiz_blog_article.completed.publish'
 )]
 final class BlogArticleSavePublishDateListener
 {
