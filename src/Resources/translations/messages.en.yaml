@@ -18,6 +18,7 @@ monsieurbiz_blog:
             meta_description: Meta description
             meta_keywords: Meta keywords
             help:
+                description: Used in the display of lists
                 meta_title: If empty, the title will be used.
                 meta_description: If empty, the description will be used.
         author:

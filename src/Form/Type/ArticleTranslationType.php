@@ -37,6 +37,7 @@ final class ArticleTranslationType extends AbstractResourceType
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'monsieurbiz_blog.form.article.description',
+                'help' => 'monsieurbiz_blog.form.article.help.description',
             ])
             ->add('content', RichEditorType::class, [
                 'label' => 'monsieurbiz_blog.form.article.content',
