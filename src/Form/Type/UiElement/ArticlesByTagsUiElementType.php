@@ -35,8 +35,8 @@ use Symfony\Component\Validator\Constraints as Assert;
     description: 'monsieurbiz_blog.ui_element.articles_by_tags_ui_element.description',
     uiElement: 'MonsieurBiz\SyliusBlogPlugin\UiElement\ArticlesByTagsUiElement',
     templates: new TemplatesUiElement(
-        adminRender: '@MonsieurBizSyliusBlogPlugin/Admin/UiElement/articles_by_tags.html.twig',
-        frontRender: '@MonsieurBizSyliusBlogPlugin/Shop/UiElement/articles_by_tags.html.twig',
+        adminRender: '@MonsieurBizSyliusBlogPlugin/admin/uielement/articles_by_tags.html.twig',
+        frontRender: '@MonsieurBizSyliusBlogPlugin/shop/uielement/articles_by_tags.html.twig',
     ),
     wireframe: 'articles-by-tags',
     tags: ['blog', 'blog-articles', 'articles-by-tags'],

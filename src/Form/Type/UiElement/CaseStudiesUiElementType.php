@@ -29,8 +29,8 @@ use Symfony\Component\Validator\Constraints as Assert;
     description: 'monsieurbiz_blog.ui_element.case_studies_ui_element.description',
     uiElement: 'MonsieurBiz\SyliusBlogPlugin\UiElement\CaseStudiesUiElement',
     templates: new TemplatesUiElement(
-        adminRender: '@MonsieurBizSyliusBlogPlugin/Admin/UiElement/case_studies.html.twig',
-        frontRender: '@MonsieurBizSyliusBlogPlugin/Shop/UiElement/case_studies.html.twig',
+        adminRender: '@MonsieurBizSyliusBlogPlugin/admin/uielement/case_studies.html.twig',
+        frontRender: '@MonsieurBizSyliusBlogPlugin/shop/uielement/case_studies.html.twig',
     ),
     wireframe: 'case-studies',
     tags: ['blog', 'blog-case-studies', 'case-studies'],

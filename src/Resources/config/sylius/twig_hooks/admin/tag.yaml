@@ -6,32 +6,32 @@ sylius_twig_hooks:
                 props:
                     resource: '@=_context.resource'
                     form: '@=_context.form'
-                    template: '@MonsieurBizSyliusBlogPlugin/Admin/Tag/form.html.twig'
+                    template: '@MonsieurBizSyliusBlogPlugin/admin/tag/form.html.twig'
                 configuration:
                     render_rest: false
                 priority: 0
 
         'sylius_admin.tag.create.content.form.sections':
             general:
-                template: '@MonsieurBizSyliusBlogPlugin/Admin/Tag/form/sections/general.html.twig'
+                template: '@MonsieurBizSyliusBlogPlugin/admin/tag/form/sections/general.html.twig'
                 priority: 200
             translations:
-                template: '@MonsieurBizSyliusBlogPlugin/Admin/Tag/form/sections/translations.html.twig'
+                template: '@MonsieurBizSyliusBlogPlugin/admin/tag/form/sections/translations.html.twig'
                 priority: 100
 
         'sylius_admin.tag.create.content.form.sections.general':
             default:
                 enabled: false
             enabled:
-                template: '@MonsieurBizSyliusBlogPlugin/Admin/Tag/form/sections/general/enabled.html.twig'
+                template: '@MonsieurBizSyliusBlogPlugin/admin/tag/form/sections/general/enabled.html.twig'
                 priority: 100
 
         'sylius_admin.tag.create.content.form.sections.translations':
             name:
-                template: '@MonsieurBizSyliusBlogPlugin/Admin/Tag/form/sections/translations/name.html.twig'
+                template: '@MonsieurBizSyliusBlogPlugin/admin/tag/form/sections/translations/name.html.twig'
                 priority: 200
             slug:
-                template: '@MonsieurBizSyliusBlogPlugin/Admin/Tag/form/sections/translations/slug.html.twig'
+                template: '@MonsieurBizSyliusBlogPlugin/admin/tag/form/sections/translations/slug.html.twig'
                 priority: 100
 
 
@@ -41,30 +41,30 @@ sylius_twig_hooks:
                 props:
                     resource: '@=_context.resource'
                     form: '@=_context.form'
-                    template: '@MonsieurBizSyliusBlogPlugin/Admin/Tag/form.html.twig'
+                    template: '@MonsieurBizSyliusBlogPlugin/admin/tag/form.html.twig'
                 configuration:
                     render_rest: false
                 priority: 0
 
         'sylius_admin.tag.update.content.form.sections':
             general:
-                template: '@MonsieurBizSyliusBlogPlugin/Admin/Tag/form/sections/general.html.twig'
+                template: '@MonsieurBizSyliusBlogPlugin/admin/tag/form/sections/general.html.twig'
                 priority: 200
             translations:
-                template: '@MonsieurBizSyliusBlogPlugin/Admin/Tag/form/sections/translations.html.twig'
+                template: '@MonsieurBizSyliusBlogPlugin/admin/tag/form/sections/translations.html.twig'
                 priority: 100
 
         'sylius_admin.tag.update.content.form.sections.general':
             default:
                 enabled: false
             enabled:
-                template: '@MonsieurBizSyliusBlogPlugin/Admin/Tag/form/sections/general/enabled.html.twig'
+                template: '@MonsieurBizSyliusBlogPlugin/admin/tag/form/sections/general/enabled.html.twig'
                 priority: 100
 
         'sylius_admin.tag.update.content.form.sections.translations':
             name:
-                template: '@MonsieurBizSyliusBlogPlugin/Admin/Tag/form/sections/translations/name.html.twig'
+                template: '@MonsieurBizSyliusBlogPlugin/admin/tag/form/sections/translations/name.html.twig'
                 priority: 200
             slug:
-                template: '@MonsieurBizSyliusBlogPlugin/Admin/Tag/form/sections/translations/slug.html.twig'
+                template: '@MonsieurBizSyliusBlogPlugin/admin/tag/form/sections/translations/slug.html.twig'
                 priority: 100

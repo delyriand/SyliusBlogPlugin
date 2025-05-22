@@ -33,8 +33,8 @@ use Symfony\Component\Validator\Constraints as Assert;
     description: 'monsieurbiz_blog.ui_element.articles_selection_ui_element.description',
     uiElement: 'MonsieurBiz\SyliusBlogPlugin\UiElement\ArticlesSelectionUiElement',
     templates: new TemplatesUiElement(
-        adminRender: '@MonsieurBizSyliusBlogPlugin/Admin/UiElement/articles_selection.html.twig',
-        frontRender: '@MonsieurBizSyliusBlogPlugin/Shop/UiElement/articles_selection.html.twig',
+        adminRender: '@MonsieurBizSyliusBlogPlugin/admin/uielement/articles_selection.html.twig',
+        frontRender: '@MonsieurBizSyliusBlogPlugin/shop/uielement/articles_selection.html.twig',
     ),
     wireframe: 'articles-selection',
     tags: ['blog', 'blog-articles', 'articles-selection'],
