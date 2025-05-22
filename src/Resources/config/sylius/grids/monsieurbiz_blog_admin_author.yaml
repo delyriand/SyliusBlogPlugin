@@ -21,6 +21,7 @@ sylius_grid:
                 name:
                     type: string
                     label: monsieurbiz_blog.ui.name
+                    sortable: ~
             actions:
                 main:
                     create:
