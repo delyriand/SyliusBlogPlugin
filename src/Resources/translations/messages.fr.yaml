@@ -17,10 +17,12 @@ monsieurbiz_blog:
             meta_title: Meta title
             meta_description: Meta description
             meta_keywords: Meta keywords
+            meta_image: Meta image
             help:
                 description: Utilisée dans l'affichage des listes
                 meta_title: Si vide, le titre sera utilisé.
                 meta_description: Si vide, la description sera utilisée.
+                meta_image: "Format idéal : 1200 x 630 px"
         author:
             name: Nom
             image: Image
@@ -53,6 +55,15 @@ monsieurbiz_blog:
         new_case_study: Nouvelle étude de cas
         edit_case_study: Modifier l'étude de cas
         no_results_to_display: Aucun résultat à afficher
+        show_in: "Afficher dans"
+        show_article_in_shop: "Afficher l'article dans la boutique"
+        cannot_show_article_in_shop: "Vous ne pouvez pas afficher cet article dans la boutique car il n'est pas activé, publié ou associé à au moins un canal."
+        preview_update_action_tooltip: "Cliquez sur `Mise à jour` pour enregistrer vos modifications avant de prévisualiser l'article."
+        preview_create_action_tooltip: "Cliquez sur `Créer` pour enregistrer vos modifications avant de prévisualiser l'article."
+        actions:
+            preview: 'Prévisualiser'
+        banner:
+            preview: 'Prévisualisation'
     ui_element:
         case_studies_ui_element:
             title: Lame Études de cas

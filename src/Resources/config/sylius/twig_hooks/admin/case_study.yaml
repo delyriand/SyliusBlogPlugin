@@ -1,5 +1,18 @@
 sylius_twig_hooks:
     hooks:
+        'sylius_admin.case_study.create.content.header.title_block.actions':
+            preview:
+                template: '@MonsieurBizSyliusBlogPlugin/admin/article/update/content/header/title_block/actions/preview.html.twig'
+                priority: -100
+                configuration: 
+                    tooltip: 'monsieurbiz_blog.ui.preview_create_action_tooltip'
+                    type: 'case_study'
+            show_in_shop:
+                template: '@MonsieurBizSyliusBlogPlugin/admin/article/update/content/header/title_block/actions/show_in_shop.html.twig'
+                priority: -200
+                configuration: 
+                    type: 'case_study'
+
         'sylius_admin.case_study.create.content':
             form:
                 component: 'sylius_admin:monsieurbiz_blog:article:form'
@@ -61,6 +74,18 @@ sylius_twig_hooks:
                 template: '@MonsieurBizSyliusBlogPlugin/admin/article/form/sections/translations/seo.html.twig'
                 priority: 200
 
+        'sylius_admin.case_study.update.content.header.title_block.actions':
+            preview:
+                template: '@MonsieurBizSyliusBlogPlugin/admin/article/update/content/header/title_block/actions/preview.html.twig'
+                priority: -100
+                configuration: 
+                    tooltip: 'monsieurbiz_blog.ui.preview_create_action_tooltip'
+                    type: 'case_study'
+            show_in_shop:
+                template: '@MonsieurBizSyliusBlogPlugin/admin/article/update/content/header/title_block/actions/show_in_shop.html.twig'
+                priority: -200
+                configuration: 
+                    type: 'case_study'
 
         'sylius_admin.case_study.update.content':
             form:

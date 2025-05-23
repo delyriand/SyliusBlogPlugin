@@ -13,6 +13,7 @@ sylius_resource:
                     form: MonsieurBiz\SyliusBlogPlugin\Form\Type\TagTranslationType
         monsieurbiz_blog.article:
             classes:
+                controller: MonsieurBiz\SyliusBlogPlugin\Controller\ArticleController
                 model: MonsieurBiz\SyliusBlogPlugin\Entity\Article
                 interface: MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface
                 repository: MonsieurBiz\SyliusBlogPlugin\Repository\ArticleRepository
@@ -24,6 +25,7 @@ sylius_resource:
                     form: MonsieurBiz\SyliusBlogPlugin\Form\Type\ArticleTranslationType
         monsieurbiz_blog.case_study:
             classes:
+                controller: MonsieurBiz\SyliusBlogPlugin\Controller\ArticleController
                 model: MonsieurBiz\SyliusBlogPlugin\Entity\Article
                 interface: MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface
                 repository: MonsieurBiz\SyliusBlogPlugin\Repository\ArticleRepository

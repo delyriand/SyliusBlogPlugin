@@ -17,10 +17,12 @@ monsieurbiz_blog:
             meta_title: Meta title
             meta_description: Meta description
             meta_keywords: Meta keywords
+            meta_image: Meta image
             help:
                 description: Used in the display of lists
                 meta_title: If empty, the title will be used.
                 meta_description: If empty, the description will be used.
+                meta_image: "Ideal format: 1200 x 630 px"
         author:
             name: Name
             image: Image
@@ -53,6 +55,15 @@ monsieurbiz_blog:
         new_case_study: New case study
         edit_case_study: Edit case study
         no_results_to_display: No results to display
+        show_in: "Show in"
+        show_article_in_shop: "Show article in shop"
+        cannot_show_article_in_shop: "You cannot show this article in the shop because it is not enabled, not published or associated to at least one channel."
+        preview_update_action_tooltip: "Click `Update` to save your changes before previewing the article."
+        preview_create_action_tooltip: "Click `Create` to save your changes before previewing the article."
+        actions:
+            preview: 'Preview'
+        banner:
+            preview: Preview
     ui_element:
         case_studies_ui_element:
             title: Case studies Element

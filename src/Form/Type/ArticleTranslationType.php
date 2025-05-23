@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusBlogPlugin\Form\Type;
 
+use MonsieurBiz\SyliusMediaManagerPlugin\Form\Type\ImageType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\RichEditorType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use MonsieurBiz\SyliusMediaManagerPlugin\Form\Type\ImageType;
 
 final class ArticleTranslationType extends AbstractResourceType
 {

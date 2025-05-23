@@ -18,7 +18,7 @@ monsieurbiz_blog_admin_article:
         alias: monsieurbiz_blog.article
         path: /blog/articles
         templates: "@SyliusAdmin\\shared\\crud"
-        redirect: index
+        redirect: update
         except: ['show', 'create']
         grid: monsieurbiz_blog_admin_article_blog
         vars:
@@ -46,7 +46,7 @@ monsieurbiz_blog_admin_case_study:
         alias: monsieurbiz_blog.case_study
         path: /blog/case-studies
         templates: "@SyliusAdmin\\shared\\crud"
-        redirect: index
+        redirect: update
         except: ['show', 'create']
         grid: monsieurbiz_blog_admin_article_case_study
         vars:
@@ -93,3 +93,19 @@ monsieurbiz_blog_admin_author:
         except: ['show']
         grid: monsieurbiz_blog_admin_author
     type: sylius.resource
+
+monsieurbiz_blog_admin_blog_preview:
+    path: /blog/article/preview/{id}
+    defaults:
+        _controller: monsieurbiz_blog.controller.article::previewAction
+        template: '@MonsieurBizSyliusBlogPlugin\admin\article\preview.html.twig'
+        _sylius:
+            section: shop
+
+monsieurbiz_blog_admin_case_study_preview:
+    path: /blog/case-study/preview/{id}
+    defaults:
+        _controller: monsieurbiz_blog.controller.article::previewAction
+        template: '@MonsieurBizSyliusBlogPlugin\admin\article\preview.html.twig'
+        _sylius:
+            section: shop
