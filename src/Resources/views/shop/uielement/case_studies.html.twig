@@ -7,8 +7,6 @@
     element methods:
         getCaseStudies
 #}
-{% import '@SyliusUi/Macro/messages.html.twig' as messages %}
-
 {% set case_studies = ui_element.getCaseStudies(element) %}
 
 {% if case_studies|length > 0 %}
