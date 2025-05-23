@@ -24,9 +24,6 @@ monsieurbiz_blog_admin_article:
         vars:
             index:
                 icon: 'newspaper'
-            update:
-                templates:
-                    toolbar: "@MonsieurBizSyliusBlogPlugin/admin/article/update/_toolbar.html.twig"
     type: sylius.resource
 
 monsieurbiz_blog_admin_article_create:
@@ -55,9 +52,6 @@ monsieurbiz_blog_admin_case_study:
         vars:
             index:
                 icon: 'crosshairs'
-            update:
-                templates:
-                    toolbar: "@MonsieurBizSyliusBlogPlugin/admin/article/update/_toolbar.html.twig"
     type: sylius.resource
 
 monsieurbiz_blog_admin_case_study_create:
