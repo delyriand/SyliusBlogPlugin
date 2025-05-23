@@ -36,6 +36,8 @@ class ArticleTranslation extends AbstractTranslation implements ArticleTranslati
 
     protected ?string $metaKeywords = null;
 
+    protected ?string $metaImage = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -109,5 +111,15 @@ class ArticleTranslation extends AbstractTranslation implements ArticleTranslati
     public function setMetaKeywords(?string $metaKeywords): void
     {
         $this->metaKeywords = $metaKeywords;
+    }
+
+    public function getMetaImage(): ?string
+    {
+        return $this->metaImage;
+    }
+
+    public function setMetaImage(?string $metaImage): void
+    {
+        $this->metaImage = $metaImage;
     }
 }

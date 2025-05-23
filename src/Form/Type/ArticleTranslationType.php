@@ -18,6 +18,7 @@ use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use MonsieurBiz\SyliusMediaManagerPlugin\Form\Type\ImageType;
 
 final class ArticleTranslationType extends AbstractResourceType
 {
@@ -56,6 +57,16 @@ final class ArticleTranslationType extends AbstractResourceType
                 'label' => 'monsieurbiz_blog.form.article.meta_keywords',
                 'required' => false,
             ])
+            ->add('metaImage', ImageType::class, [
+                'label' => 'monsieurbiz_blog.form.article.meta_image',
+                'help' => 'monsieurbiz_blog.form.article.help.meta_image',
+                'required' => false,
+            ])
         ;
+    }
+
+    public function getBlockPrefix(): string
+    {
+        return 'monsieurbiz_blog_article_translation';
     }
 }

@@ -284,6 +284,16 @@ class Article implements ArticleInterface
         $this->getTranslation()->setMetaKeywords($metaKeywords);
     }
 
+    public function getMetaImage(): ?string
+    {
+        return $this->getTranslation()->getMetaImage();
+    }
+
+    public function setMetaImage(?string $metaImage): void
+    {
+        $this->getTranslation()->setMetaImage($metaImage);
+    }
+
     public function publish(): void
     {
         $this->publishedAt = new DateTime();
