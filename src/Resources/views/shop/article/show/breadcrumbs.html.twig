@@ -1,0 +1,15 @@
+{% from '@SyliusShop/shared/breadcrumbs.html.twig' import breadcrumbs as breadcrumbs %}
+
+{% set article = hookable_metadata.context.article|default(null) %}
+{% set type = article.type %}
+{% set translatedType = get_hookable_context().translatedType ?? constant('MonsieurBiz\\SyliusBlogPlugin\\Entity\\ArticleInterface::BLOG_TYPE') %}
+
+{% set crumbs = [
+    {'label': 'sylius.ui.home'|trans, 'path': path('sylius_shop_homepage')},
+    {'label': ('monsieurbiz_blog.ui.' ~ translatedType)|trans, 'path': path('monsieurbiz_' ~ type ~ '_index')},
+    {'label': article.title, 'active': true}
+] %}
+
+<div class="col-12">
+    {{ breadcrumbs(crumbs) }}
+</div>

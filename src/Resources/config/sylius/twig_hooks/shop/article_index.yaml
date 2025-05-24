@@ -1,0 +1,49 @@
+sylius_twig_hooks:
+    hooks:
+        # Blog index
+        'monsieurbiz.blog.blog.index#metatags':
+            metatags:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/blog/index/metatags.html.twig'
+                priority: 0
+        'monsieurbiz.blog.blog.index':
+            breadcrumbs:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/blog/index/breadcrumbs.html.twig'
+                priority: 400
+            title:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/blog/index/title.html.twig'
+                priority: 300
+            tags:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/blog/index/tags.html.twig'
+                priority: 200
+                configuration:
+                    display_all_link: true
+            content:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/blog/index/content.html.twig'
+                priority: 100
+            pagination:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/blog/index/pagination.html.twig'
+                priority: 0
+
+        # Case study index
+        'monsieurbiz.blog.case_study.index#metatags':
+            metatags:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/case_study/index/metatags.html.twig'
+                priority: 0
+        'monsieurbiz.blog.case_study.index':
+            breadcrumbs:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/case_study/index/breadcrumbs.html.twig'
+                priority: 400
+            title:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/case_study/index/title.html.twig'
+                priority: 300
+            tags:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/case_study/index/tags.html.twig'
+                priority: 200
+                configuration:
+                    display_all_link: true
+            content:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/case_study/index/content.html.twig'
+                priority: 100
+            pagination:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/case_study/index/pagination.html.twig'
+                priority: 0

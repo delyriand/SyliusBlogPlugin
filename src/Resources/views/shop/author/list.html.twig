@@ -1,0 +1,10 @@
+{% if authors|length > 0 %}
+    <div class="d-flex flex-wrap gap-2">
+        {% for author in authors %}
+            <div class="text-center overflow-hidden" style="width: 80px;">
+                {% include '@MonsieurBizSyliusBlogPlugin/shop/author/image.html.twig' with { author, size: '70px' } %}
+                <p class="mt-2 fw-semibold small truncate">{{ author.name }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}

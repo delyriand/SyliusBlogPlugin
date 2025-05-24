@@ -1,0 +1,12 @@
+{% set tag = get_hookable_context().tag ?? null %}
+{% set type = get_hookable_context().type ?? constant('MonsieurBiz\\SyliusBlogPlugin\\Entity\\ArticleInterface::BLOG_TYPE') %}
+{% set translatedType = get_hookable_context().translatedType ?? constant('MonsieurBiz\\SyliusBlogPlugin\\Entity\\ArticleInterface::BLOG_TYPE') %}
+
+{% set title = (('monsieurbiz_blog.ui.' ~ translatedType)|trans) %}
+{% if tag is defined and tag is not null %}
+    {% set title = tag.name ~ ' - ' ~ (('monsieurbiz_blog.ui.' ~ translatedType)|trans) %}
+{% endif %}
+
+<h2 class="mb-4">
+  {{ title|trans }}
+</h2>

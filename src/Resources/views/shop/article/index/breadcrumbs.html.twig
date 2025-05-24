@@ -1,0 +1,24 @@
+{% from '@SyliusShop/shared/breadcrumbs.html.twig' import breadcrumbs as breadcrumbs %}
+
+{% set tag = get_hookable_context().tag ?? null %}
+{% set type = get_hookable_context().type ?? constant('MonsieurBiz\\SyliusBlogPlugin\\Entity\\ArticleInterface::BLOG_TYPE') %}
+{% set translatedType = get_hookable_context().translatedType ?? constant('MonsieurBiz\\SyliusBlogPlugin\\Entity\\ArticleInterface::BLOG_TYPE') %}
+
+{% set crumbs = [
+    {'label': 'sylius.ui.home'|trans, 'path': path('sylius_shop_homepage')}
+] %}
+
+{% if tag is defined and tag is not null %}
+    {% set crumbs = crumbs|merge([
+        {'label': ('monsieurbiz_blog.ui.' ~ translatedType)|trans, 'path': path('monsieurbiz_' ~ type ~ '_index')},
+        {'label': tag.name, 'active': true}
+    ]) %}
+{% else %}
+    {% set crumbs = crumbs|merge([
+        {'label': ('monsieurbiz_blog.ui.' ~ translatedType)|trans, 'active': true}
+    ]) %}
+{% endif %}
+
+<div class="col-12">
+    {{ breadcrumbs(crumbs) }}
+</div>

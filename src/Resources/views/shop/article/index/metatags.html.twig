@@ -1,0 +1,10 @@
+{% set tag = get_hookable_context().tag ?? null %}
+{% set type = get_hookable_context().type ?? constant('MonsieurBiz\\SyliusBlogPlugin\\Entity\\ArticleInterface::BLOG_TYPE') %}
+{% set translatedType = get_hookable_context().translatedType ?? constant('MonsieurBiz\\SyliusBlogPlugin\\Entity\\ArticleInterface::BLOG_TYPE') %}
+
+{% set metaTitle = (('monsieurbiz_blog.ui.' ~ translatedType)|trans) ~ ' ' ~ sylius.channel.name|default('') %}
+{% if tag is defined and tag is not null %}
+    {% set metaTitle = tag.name ~ ' - ' ~ (('monsieurbiz_blog.ui.' ~ translatedType)|trans) ~ ' ' ~ sylius.channel.name|default('') %}
+{% endif %}
+
+<meta property="og:title" content="{{ metaTitle }}"/>

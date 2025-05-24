@@ -1,0 +1,57 @@
+sylius_twig_hooks:
+    hooks:
+        # Blog show
+        'monsieurbiz.blog.blog.show#metatags':
+            metatags:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/blog/show/metatags.html.twig'
+                priority: 0
+            structured_data:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/blog/show/structured_data.html.twig'
+                priority: 0
+        'monsieurbiz.blog.blog.show':
+            breadcrumbs:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/blog/show/breadcrumbs.html.twig'
+                priority: 600
+            title:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/blog/show/title.html.twig'
+                priority: 500
+            date:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/blog/show/date.html.twig'
+                priority: 400
+            tags:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/blog/show/tags.html.twig'
+                priority: 300
+            authors:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/blog/show/authors.html.twig'
+                priority: 200
+            content:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/blog/show/content.html.twig'
+                priority: 100
+
+        # Case study show
+        'monsieurbiz.blog.case_study.show#metatags':
+            metatags:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/case_study/show/metatags.html.twig'
+                priority: 0
+            structured_data:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/case_study/show/structured_data.html.twig'
+                priority: 0
+        'monsieurbiz.blog.case_study.show':
+            breadcrumbs:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/case_study/show/breadcrumbs.html.twig'
+                priority: 600
+            title:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/case_study/show/title.html.twig'
+                priority: 500
+            date:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/case_study/show/date.html.twig'
+                priority: 400
+            tags:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/case_study/show/tags.html.twig'
+                priority: 300
+            authors:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/case_study/show/authors.html.twig'
+                priority: 200
+            content:
+                template: '@MonsieurBizSyliusBlogPlugin/shop/case_study/show/content.html.twig'
+                priority: 100

@@ -1,0 +1,8 @@
+{% set article = hookable_metadata.context.article|default(null) %}
+
+{% set authors = article.authors|default([]) %}
+{% if authors|length %}
+    <div class="mb-4">
+        {% include '@MonsieurBizSyliusBlogPlugin/shop/author/list.html.twig' with { authors } %}
+    </div>
+{% endif %}

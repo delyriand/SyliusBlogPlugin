@@ -1,0 +1,7 @@
+{% set article = hookable_metadata.context.article|default(null) %}
+
+{% if article is not empty and article.content is defined %}
+    <div>
+        {{ article.content|monsieurbiz_richeditor_render_field }}
+    </div>
+{% endif %}

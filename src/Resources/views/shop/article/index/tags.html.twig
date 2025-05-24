@@ -1,0 +1,9 @@
+{% set type = get_hookable_context().type ?? constant('MonsieurBiz\\SyliusBlogPlugin\\Entity\\ArticleInterface::BLOG_TYPE') %}
+{% set currentTag = get_hookable_context().tag ?? null %}
+{% set type = get_hookable_context().type ?? constant('MonsieurBiz\\SyliusBlogPlugin\\Entity\\ArticleInterface::BLOG_TYPE') %}
+{% set translatedType = get_hookable_context().translatedType ?? constant('MonsieurBiz\\SyliusBlogPlugin\\Entity\\ArticleInterface::BLOG_TYPE') %}
+{% set displayAllLink =  hookable_metadata.configuration.display_all_link ? hookable_metadata.configuration.display_all_link : true %}
+
+<div class="mb-4">
+    {% include '@MonsieurBizSyliusBlogPlugin/shop/tag/list.html.twig' %}
+</div>

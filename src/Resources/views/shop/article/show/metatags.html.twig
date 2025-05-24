@@ -1,0 +1,21 @@
+{% set article = hookable_metadata.context.article|default(null) %}
+{% set type = article.type %}
+
+{% if article %}
+    {% set metaTitle = article.metaTitle|default(article.title) %}
+    {% set metaDescription = article.metaDescription|default(article.description) %}
+    {% set metaImage = article.metaImage|default(article.image) %}
+
+    <meta name="title" property="og:title" content="{{ metaTitle }}" />
+    <meta name="description" property="og:description" content="{{ metaDescription }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{{ absolute_url(path('monsieurbiz_' ~ type ~ '_article_show', {'slug': article.slug})) }}" />
+
+    {% if article.metaKeywords|default('') is not empty %}
+        <meta name="keywords" content="{{ article.metaKeywords }}"/>
+    {% endif %}
+
+    {% if metaImage is not empty %}
+        <meta property="og:image" content="{{ metaImage|imagine_filter('monsieurbiz_blog_image_og_image') }}" />
+    {% endif %}
+{% endif %}

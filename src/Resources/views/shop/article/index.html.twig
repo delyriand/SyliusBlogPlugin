@@ -1,10 +1,5 @@
 {% extends '@SyliusShop/shared/layout/base.html.twig' %}
 
-{# Manage folder for templates #}
-{% if templateDir is not defined %}
-    {% set templateDir = 'Article' %}
-{% endif %}
-
 {# Manage tag if set #}
 {% set tag = configuration.parameters.get('parameters')['tag'] ?? null %}
 
@@ -15,16 +10,21 @@
     {% set translatedType = metadata.pluralName %}
 {% endif %}
 
+{# Set prefixes for Sylius hooks #}
+{% set prefixes = ['monsieurbiz.blog.' ~ type ~ '.index', 'monsieurbiz.blog.article.index'] %}
+
 {% block title %}
+{% apply spaceless %}
     {% if tag is defined and tag is not null %}
         {{ tag.name }} - {{ ('monsieurbiz_blog.ui.' ~ translatedType)|trans }} {{ parent() }}
     {% else %}
         {{ ('monsieurbiz_blog.ui.' ~ translatedType)|trans }} {{ parent() }}
     {% endif %}
+{% endapply %}
 {% endblock %}
 
 {% block content %}
-    {% include '@MonsieurBizSyliusBlogPlugin/shop/' ~ templateDir ~'/_header.html.twig' with {'tag': tag} %}
-
-    {% include '@MonsieurBizSyliusBlogPlugin/shop/' ~ templateDir ~'/_list.html.twig' %}
+    <div class="container mt-4 mb-5">
+        {% hook prefixes with { tag, type, translatedType, metadata, configuration, resources } %}
+    </div>
 {% endblock %}

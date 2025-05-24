@@ -1,0 +1,9 @@
+{% set article = hookable_metadata.context.article|default(null) %}
+{% set type = article.type %}
+
+{% set tags = article.tags|default([]) %}
+{% if tags|length %}
+    <div class="mb-4">
+        {% include '@MonsieurBizSyliusBlogPlugin/shop/tag/list.html.twig' with { tags, type }%}
+    </div>
+{% endif %}

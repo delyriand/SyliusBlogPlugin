@@ -1,9 +1,38 @@
-{% set tags = monsieurbiz_blog_tags(type) %}
+{% if tags is not defined %}
+    {% set tags = monsieurbiz_blog_tags(type) %}
+{% endif %}
+
+{% if displayAllLink is not defined %}
+    {% set displayAllLink = false %}
+{% endif %}
+
+{% if currentTag is not defined %}
+    {% set currentTag = null %}
+{% endif %}
 
 {% if tags|length > 0 %}
-    <div class="ui labels">
+    <div class="d-flex gap-1 flex-wrap">
+    {% if displayAllLink and currentTag is null %}
+        <span class="badge rounded-pill bg-primary text-light" style="font-size: 0.95em; text-decoration:none;">
+            {{ 'sylius.ui.all'|trans }}
+        </span>
+    {% elseif displayAllLink %}
+        <a href="{{ path('monsieurbiz_' ~ type ~ '_index') }}" class="badge rounded-pill border border-primary text-primary" style="font-size: 0.95em; text-decoration:none;">
+            {{ 'sylius.ui.all'|trans }}
+        </a>
+    {% endif %}
     {% for tag in tags %}
-        <a href="{{ path('monsieurbiz_' ~ type ~ '_tag_show', { 'slug': tag.slug }) }}" class="ui tag label">{{ tag.name }}</a>
+        {% if currentTag != tag %}
+            <a href="{{ path('monsieurbiz_' ~ type ~ '_tag_show', { 'slug': tag.slug }) }}"
+                class="badge rounded-pill border border-primary text-primary"
+                style="font-size: 0.95em; text-decoration:none;">
+                {{ tag.name }}
+            </a>
+        {% else %}
+            <span class="badge rounded-pill bg-primary text-light" style="font-size: 0.95em; text-decoration:none;">
+                {{ currentTag.name }}
+            </span>
+        {% endif %}
     {% endfor %}
     </div>
 {% endif %}

@@ -1,0 +1,19 @@
+{% set filter = filter|default('monsieurbiz_author_image_thumbnail') %}
+{% set classes = classes|default('') %}
+{% set size = size|default('40px') %}
+
+{% if author.image %}
+    {% set path = author.image|imagine_filter(filter) %}
+{% else %}
+    {% set path = '' %}
+{% endif %}
+
+{% if path is not empty %}
+    <img src="{{ path }}" alt="{{ author.name }} | escape('html_attr')" class="rounded-circle border border-body-tertiary" style="width:{{ size }}; height:{{ size }}; background:white; object-fit:cover;">
+{% else %}
+    {# Empty circle in bootstrap #}
+    <div class="m-auto rounded-circle border border-body-tertiary d-flex align-items-center justify-content-center" style="width:{{ size }}; height:{{ size }}; background:white;">
+        <span class="text-muted">{{ author.name|slice(0, 1)|upper }}</span>
+    </div>
+{% endif %}
+

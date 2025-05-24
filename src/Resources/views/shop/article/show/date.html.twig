@@ -1,0 +1,5 @@
+{% set article = hookable_metadata.context.article|default(null) %}
+
+<div class="mb-4 text-body-tertiary" style="margin-top: -1rem;">
+  {{ article.publishedAt|format_date() }}
+</div>

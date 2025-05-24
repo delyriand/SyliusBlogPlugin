@@ -1,0 +1,21 @@
+<div class="card {{ class|default('') }}">
+    {% include '@MonsieurBizSyliusBlogPlugin/shop/' ~ type ~'/image.html.twig' with { isThumbnail: true, class: 'card-img-top' } %}
+    <div class="card-body">
+        <a href="{{ path('monsieurbiz_' ~ type ~ '_article_show', { 'slug': article.slug }) }}" class="stretched-link text-decoration-none">
+            <h5 class="card-title mb-1">{{ article.title }}</h5>
+        </a>
+        <div class="card-subtitle mb-2 text-muted">
+            <small>{{ article.publishedAt|format_date() }}</small>
+        </div>
+        {% if article.description %}
+            <p class="card-text">{{ article.description|nl2br }}</p>
+        {% endif %}
+    </div>
+
+    {% set tags = article.tags|default([]) %}
+    {% if tags|length %}
+        <div class="card-footer bg-white px-4">
+            {% include '@MonsieurBizSyliusBlogPlugin/shop/tag/list.html.twig' with { tags, type}%}
+        </div>
+    {% endif %}
+</div>

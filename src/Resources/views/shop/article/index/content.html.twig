@@ -1,0 +1,16 @@
+{% import '@SyliusShop/shared/messages.html.twig' as messages %}
+
+{% set articles = get_hookable_context().resources ?? [] %}
+{% set type = get_hookable_context().type ?? constant('MonsieurBiz\\SyliusBlogPlugin\\Entity\\ArticleInterface::BLOG_TYPE') %}
+
+{% if articles.data|length %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for article in articles.data %}
+            <div class="col">
+                {% include '@MonsieurBizSyliusBlogPlugin/shop/' ~ type ~'/card.html.twig' with { class: 'h-100' } %}
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    {{ messages.info('sylius.ui.no_results_to_display') }}
+{% endif %}
