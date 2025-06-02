@@ -1,6 +1,7 @@
 monsieurbiz_case_study_index:
     path: /
     methods: [ GET ]
+    condition: "env('MONSIEURBIZ_SYLIUS_BLOG_ENABLE_CASE_STUDIES') == 'true'"
     defaults:
         _controller: monsieurbiz_blog.controller.case_study::indexAction
         _sylius:
@@ -12,6 +13,7 @@ monsieurbiz_case_study_index:
 monsieurbiz_case_study_tag_show:
     path: /tag/{slug}
     methods: [ GET ]
+    condition: "env('MONSIEURBIZ_SYLIUS_BLOG_ENABLE_CASE_STUDIES') == 'true'"
     defaults:
         _controller: monsieurbiz_blog.controller.case_study::indexAction
         _sylius:
@@ -24,6 +26,7 @@ monsieurbiz_case_study_tag_show:
 monsieurbiz_case_study_article_show:
     path: /{slug}
     methods: [ GET ]
+    condition: "env('MONSIEURBIZ_SYLIUS_BLOG_ENABLE_CASE_STUDIES') == 'true'"
     defaults:
         _controller: monsieurbiz_blog.controller.case_study::showAction
         _sylius:

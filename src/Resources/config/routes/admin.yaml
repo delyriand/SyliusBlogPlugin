@@ -41,6 +41,7 @@ monsieurbiz_blog_admin_article_create:
                     - !php/const MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface::BLOG_TYPE
 
 monsieurbiz_blog_admin_case_study:
+    condition: "env('MONSIEURBIZ_SYLIUS_BLOG_ENABLE_CASE_STUDIES') == 'true'"
     resource: |
         section: admin
         alias: monsieurbiz_blog.case_study
@@ -56,6 +57,7 @@ monsieurbiz_blog_admin_case_study:
 
 monsieurbiz_blog_admin_case_study_create:
     path: /blog/case-study/new
+    condition: "env('MONSIEURBIZ_SYLIUS_BLOG_ENABLE_CASE_STUDIES') == 'true'"
     methods: [GET, POST]
     defaults:
         _controller: monsieurbiz_blog.controller.case_study::createAction
@@ -67,21 +69,6 @@ monsieurbiz_blog_admin_case_study_create:
                 method: ["expr:service('monsieurbiz_blog.factory.article')", "createNewWithType"]
                 arguments:
                     - !php/const MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface::CASE_STUDY_TYPE
-
-monsieurbiz_blog_admin_article_update_state:
-    path: /blog/articles/{id}/{state}
-    methods: [PUT]
-    defaults:
-        _controller: monsieurbiz_blog.controller.article::applyStateMachineTransitionAction
-        _sylius:
-            event: $state
-            section: admin
-            permission: true
-            state_machine:
-                graph: !php/const \MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface::GRAPH
-                transition: $state
-            redirect: referer
-            flash: monsieurbiz_blog.blog.article.$state
 
 monsieurbiz_blog_admin_author:
     resource: |
@@ -104,8 +91,25 @@ monsieurbiz_blog_admin_blog_preview:
 
 monsieurbiz_blog_admin_case_study_preview:
     path: /blog/case-study/preview/{id}
+    condition: "env('MONSIEURBIZ_SYLIUS_BLOG_ENABLE_CASE_STUDIES') == 'true'"
     defaults:
         _controller: monsieurbiz_blog.controller.article::previewAction
         template: '@MonsieurBizSyliusBlogPlugin\admin\article\preview.html.twig'
         _sylius:
             section: shop
+
+# For blog and case studies
+monsieurbiz_blog_admin_article_update_state:
+    path: /blog/articles/{id}/{state}
+    methods: [PUT]
+    defaults:
+        _controller: monsieurbiz_blog.controller.article::applyStateMachineTransitionAction
+        _sylius:
+            event: $state
+            section: admin
+            permission: true
+            state_machine:
+                graph: !php/const \MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface::GRAPH
+                transition: $state
+            redirect: referer
+            flash: monsieurbiz_blog.blog.article.$state

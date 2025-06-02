@@ -4,8 +4,8 @@ sylius_twig_hooks:
             monsieurbiz_blog:
                 template: '@MonsieurBizSyliusBlogPlugin/shop/layout/topbar/_blog_link.html.twig'
                 priority: 150
-                enabled: false
+                enabled: true
             monsieurbiz_case_study:
                 template: '@MonsieurBizSyliusBlogPlugin/shop/layout/topbar/_casestudy_link.html.twig'
                 priority: 140
-                enabled: false
+                enabled: true

@@ -14,9 +14,16 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusBlogPlugin\EventListener;
 
 use Sylius\Bundle\UiBundle\Menu\Event\MenuBuilderEvent;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 final class AdminMenuListener
 {
+    public function __construct(
+        #[Autowire('%env(bool:MONSIEURBIZ_SYLIUS_BLOG_ENABLE_CASE_STUDIES)%')]
+        private bool $enableCaseStudies,
+    ) {
+    }
+
     public function __invoke(MenuBuilderEvent $event): void
     {
         $menu = $event->getMenu();
@@ -45,14 +52,16 @@ final class AdminMenuListener
             ->setLabelAttribute('icon', 'tabler:news')
         ;
 
-        $blogMenu
-            ->addChild('monsieurbiz-blog-articles-case-study', ['route' => 'monsieurbiz_blog_admin_case_study_index', 'extras' => ['routes' => [
-                'monsieurbiz_blog_admin_case_study_create',
-                'monsieurbiz_blog_admin_case_study_update',
-            ]]])
-            ->setLabel('monsieurbiz_blog.ui.case_studies')
-            ->setLabelAttribute('icon', 'tabler:crosshair')
-        ;
+        if ($this->enableCaseStudies) {
+            $blogMenu
+                ->addChild('monsieurbiz-blog-articles-case-study', ['route' => 'monsieurbiz_blog_admin_case_study_index', 'extras' => ['routes' => [
+                    'monsieurbiz_blog_admin_case_study_create',
+                    'monsieurbiz_blog_admin_case_study_update',
+                ]]])
+                ->setLabel('monsieurbiz_blog.ui.case_studies')
+                ->setLabelAttribute('icon', 'tabler:crosshair')
+            ;
+        }
 
         $blogMenu
             ->addChild('monsieurbiz-blog-authors', ['route' => 'monsieurbiz_blog_admin_author_index', 'extras' => ['routes' => [
