@@ -7,15 +7,15 @@
 
 This plugin adds a blog to your Sylius project. It allows you to create blog articles, tags and authors.
 
-## Compatibility
+![List of article in a Sylius blog](images/blog_front.png)
 
 ## Compatibility
 
 | Sylius Version | PHP Version     |
 |----------------|-----------------|
-| 1.12           | 8.1 - 8.2 - 8.3 |
-| 1.13           | 8.1 - 8.2 - 8.3 |
-| 1.14           | 8.1 - 8.2 - 8.3 |
+| 2.0            | 8.2 - 8.3       |
+
+ℹ️ For Sylius 1.x, see our [1.x branch](https://github.com/monsieurbiz/SyliusBlogPlugin/tree/1.x) and all 1.x releases.
 
 ## Installation
 
@@ -28,7 +28,7 @@ composer config --no-plugins --json extra.symfony.endpoint '["https://api.github
 Install the plugin via composer:
 
 ```bash
-composer require monsieurbiz/sylius-blog-plugin:dev-master
+composer require monsieurbiz/sylius-blog-plugin
 ```
 
 <!-- The section on the flex recipe will be displayed when the flex recipe will be available on contrib repo
@@ -66,6 +66,21 @@ And finally, update your database:
 bin/console doctrine:migrations:migrate
 ```
 
+## Type of posts
+
+![List of article in a Sylius admin](images/blog_admin.png)
+
+This plugin allows you to create 2 types of posts:
+- **Blog articles**: These are the main content of your blog, where you can write detailed posts.
+- **Case studies**: These are more focused posts that showcase specific projects or achievements.
+
+Case studies are disabled by default. You can enable them by setting the env var `MONSIEURBIZ_SYLIUS_BLOG_ENABLE_CASE_STUDIES` to `true` in your `.env` file:
+
+```dotenv
+MONSIEURBIZ_SYLIUS_BLOG_ENABLE_CASE_STUDIES=true
+```
+
+The structure of the code allows you to easily add new types of posts in the future if needed.
 
 ## License
 
