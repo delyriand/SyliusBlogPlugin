@@ -36,6 +36,8 @@ interface ArticleRepositoryInterface extends RepositoryInterface
      */
     public function findAllEnabledAndPublishedByTags(string $localeCode, string $type, ChannelInterface $channel, array $tags, int $limit): array;
 
+    public function existsOneByTypeAndChannelAndSlug(string $slug, string $localeCode, string $type, ChannelInterface $channel, array $excludedArticles = []): bool;
+
     public function findOnePublishedBySlug(string $slug, string $localeCode, string $type, ChannelInterface $channel): ?ArticleInterface;
 
     public function findAllEnabledAndPublishedByAuthor(string $localeCode, string $type, ChannelInterface $channel, AuthorInterface $author, int $limit): array;

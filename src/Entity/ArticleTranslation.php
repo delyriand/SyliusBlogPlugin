@@ -20,15 +20,15 @@ class ArticleTranslation extends AbstractTranslation implements ArticleTranslati
 {
     use TimestampableTrait;
 
-    protected ?int $id;
+    protected ?int $id = null;
 
     protected ?string $title = null;
 
-    protected ?string $slug;
+    protected ?string $slug = null;
 
-    protected ?string $description;
+    protected ?string $description = null;
 
-    protected ?string $content;
+    protected ?string $content = null;
 
     protected ?string $metaTitle = null;
 

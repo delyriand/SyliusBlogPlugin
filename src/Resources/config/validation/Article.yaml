@@ -1,4 +1,7 @@
 MonsieurBiz\SyliusBlogPlugin\Entity\Article:
+    constraints:
+        -   MonsieurBiz\SyliusBlogPlugin\Validator\Constraints\UniqueSlugByTypeAndChannel:
+                groups: [monsieurbiz]
     properties:
         tags:
             -   NotBlank:

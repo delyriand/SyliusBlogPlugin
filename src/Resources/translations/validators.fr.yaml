@@ -1,0 +1,4 @@
+monsieurbiz_blog:
+    ui:
+        slug:
+            unique: 'Ce slug est déjà utilisé pour un autre article de type %type%, avec le canal %channel% et la locale %locale%.'

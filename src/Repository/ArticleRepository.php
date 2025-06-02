@@ -87,6 +87,27 @@ final class ArticleRepository extends EntityRepository implements ArticleReposit
         ;
     }
 
+    public function existsOneByTypeAndChannelAndSlug(string $slug, string $localeCode, string $type, ChannelInterface $channel, array $excludedArticles = []): bool
+    {
+        $queryBuilder = $this->createListQueryBuilderByType($localeCode, $type)
+            ->andWhere('translation.slug = :slug')
+            ->andWhere(':channel MEMBER OF ba.channels')
+            ->andWhere('ba.type = :type')
+            ->andWhere('ba.enabled = true')
+            ->setParameter('slug', $slug)
+            ->setParameter('channel', $channel)
+            ->setParameter('type', $type)
+        ;
+
+        if (!empty($excludedArticles)) {
+            $queryBuilder->andWhere('ba.id NOT IN (:excludedArticles)')
+                ->setParameter('excludedArticles', $excludedArticles)
+            ;
+        }
+
+        return (bool) $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
     public function findOnePublishedBySlug(string $slug, string $localeCode, string $type, ChannelInterface $channel): ?ArticleInterface
     {
         return $this->createListQueryBuilderByType($localeCode, $type)
