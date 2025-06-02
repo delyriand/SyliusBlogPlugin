@@ -2,7 +2,7 @@ sylius_twig_hooks:
     hooks:
         # Blog show
         'monsieurbiz.blog.blog.show#metatags':
-            metatags:
+            blog_metatags:
                 template: '@MonsieurBizSyliusBlogPlugin/shop/blog/show/metatags.html.twig'
                 priority: 0
             structured_data:
@@ -30,7 +30,7 @@ sylius_twig_hooks:
 
         # Case study show
         'monsieurbiz.blog.case_study.show#metatags':
-            metatags:
+            blog_metatags:
                 template: '@MonsieurBizSyliusBlogPlugin/shop/case_study/show/metatags.html.twig'
                 priority: 0
             structured_data:

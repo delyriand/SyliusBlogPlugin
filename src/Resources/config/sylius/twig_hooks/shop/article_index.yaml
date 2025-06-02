@@ -2,7 +2,7 @@ sylius_twig_hooks:
     hooks:
         # Blog index
         'monsieurbiz.blog.blog.index#metatags':
-            metatags:
+            blog_metatags:
                 template: '@MonsieurBizSyliusBlogPlugin/shop/blog/index/metatags.html.twig'
                 priority: 0
         'monsieurbiz.blog.blog.index':
@@ -26,7 +26,7 @@ sylius_twig_hooks:
 
         # Case study index
         'monsieurbiz.blog.case_study.index#metatags':
-            metatags:
+            blog_metatags:
                 template: '@MonsieurBizSyliusBlogPlugin/shop/case_study/index/metatags.html.twig'
                 priority: 0
         'monsieurbiz.blog.case_study.index':
