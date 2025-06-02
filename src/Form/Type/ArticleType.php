@@ -28,7 +28,6 @@ use Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 final class ArticleType extends AbstractResourceType
@@ -97,12 +96,6 @@ final class ArticleType extends AbstractResourceType
                 'entry_type' => ArticleTranslationType::class,
             ])
         ;
-
-        if ($article) {
-            $builder->add('type', HiddenType::class, [
-                'data' => $article->getType(),
-            ]);
-        }
 
         $builder->get('authors')->addModelTransformer(new CollectionToArrayTransformer());
     }
