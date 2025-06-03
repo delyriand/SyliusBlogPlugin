@@ -7,31 +7,38 @@
     element methods:
         getCaseStudies
 #}
+{% import '@SyliusShop/shared/messages.html.twig' as messages %}
+
 {% set case_studies = ui_element.getCaseStudies(element) %}
 
 {% if case_studies|length > 0 %}
-
     {% if element.title|default('') is not empty %}
-        <div class="ui huge header">
+        <h1 class="display-4 mb-4">
             {{ element.title }}
-        </div>
+        </h1>
     {% endif %}
 
-    <div class="ui cards">
+    <div class="row">
         {% for case_study in case_studies %}
-            <div class="ui card">
-                <div class="image">
-                    {% include '@MonsieurBizSyliusBlogPlugin/shop/casestudy/_image.html.twig' with { 'article' : case_study, isThumbnail: true } %}
-                </div>
-                <div class="content">
-                    <a class="header">{{ case_study.title }}</a><br />
-                    <div class="extra content">
-                        <a class="ui button" href="{{ path('monsieurbiz_case_study_article_show', {'slug': case_study.slug}) }}">
-                            {{ 'monsieurbiz_blog.ui.read_more'|trans }}
-                        </a>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-img-top">
+                        {% include '@MonsieurBizSyliusBlogPlugin/admin/article/image.html.twig' with { 'article' : case_study, isThumbnail: true } %}
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ case_study.title }}</h5>
+                        <div class="mt-auto">
+                            <a class="btn btn-primary" href="{{ path('monsieurbiz_case_study_article_show', {'slug': case_study.slug}) }}">
+                                {{ 'monsieurbiz_blog.ui.read_more'|trans }}
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-info" role="alert">
+        {{ 'monsieurbiz_blog.ui.no_results_to_display'|trans }}
     </div>
 {% endif %}

@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusBlogPlugin\Form\Type;
 
-use MonsieurBiz\SyliusBlogPlugin\Entity\ArticleInterface;
 use MonsieurBiz\SyliusBlogPlugin\Entity\Tag;
 use MonsieurBiz\SyliusBlogPlugin\Entity\TagInterface;
 use MonsieurBiz\SyliusBlogPlugin\Repository\AuthorRepositoryInterface;
@@ -46,9 +45,6 @@ final class ArticleType extends AbstractResourceType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        /** @var ?ArticleInterface $article */
-        $article = $builder->getData();
-
         $builder
             ->add('enabled', CheckboxType::class, [
                 'required' => false,
