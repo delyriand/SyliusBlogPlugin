@@ -1,5 +1,8 @@
+{% set without_image = without_image ?? false %}
 <div class="card {{ class|default('') }}">
-    {% include '@MonsieurBizSyliusBlogPlugin/shop/' ~ type ~'/image.html.twig' with { isThumbnail: true, class: 'card-img-top' } %}
+    {% if not without_image %}
+        {% include '@MonsieurBizSyliusBlogPlugin/shop/' ~ type ~'/image.html.twig' with { isThumbnail: true, class: 'card-img-top' } %}
+    {% endif %}
     <div class="card-body">
         <a href="{{ path('monsieurbiz_' ~ type ~ '_article_show', { 'slug': article.slug }) }}" class="stretched-link text-decoration-none">
             <h5 class="card-title mb-1">{{ article.title }}</h5>

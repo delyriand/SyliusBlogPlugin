@@ -28,7 +28,7 @@ use Symfony\UX\LiveComponent\Form\Type\LiveCollectionType;
 
 #[AsUiElement(
     code: 'monsieurbiz_blog.articles_selection_ui_element',
-    icon: 'newspaper',
+    icon: 'tabler:news',
     title: 'monsieurbiz_blog.ui_element.articles_selection_ui_element.title',
     description: 'monsieurbiz_blog.ui_element.articles_selection_ui_element.description',
     uiElement: 'MonsieurBiz\SyliusBlogPlugin\UiElement\ArticlesSelectionUiElement',
@@ -37,7 +37,7 @@ use Symfony\UX\LiveComponent\Form\Type\LiveCollectionType;
         frontRender: '@MonsieurBizSyliusBlogPlugin/shop/uielement/articles_selection.html.twig',
     ),
     wireframe: 'articles-selection',
-    tags: ['blog', 'blog-articles', 'articles-selection'],
+    tags: ['blog', 'articles-selection'],
 )]
 class ArticlesSelectionUiElementType extends AbstractType
 {

@@ -22,25 +22,25 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 interface ArticleRepositoryInterface extends RepositoryInterface
 {
-    public function createListQueryBuilderByType(string $localeCode, string $type): QueryBuilder;
+    public function createListQueryBuilderByType(string $localeCode, ?string $type): QueryBuilder;
 
-    public function createShopListQueryBuilderByType(string $localeCode, string $type, ChannelInterface $channel, ?TagInterface $tag): QueryBuilder;
-
-    /**
-     * @return ArticleInterface[]
-     */
-    public function findAllEnabledAndPublishedByTag(string $localeCode, string $type, ChannelInterface $channel, TagInterface $tag, int $limit): array;
+    public function createShopListQueryBuilderByType(string $localeCode, ?string $type, ChannelInterface $channel, ?TagInterface $tag): QueryBuilder;
 
     /**
      * @return ArticleInterface[]
      */
-    public function findAllEnabledAndPublishedByTags(string $localeCode, string $type, ChannelInterface $channel, array $tags, int $limit): array;
+    public function findAllEnabledAndPublishedByTag(string $localeCode, ?string $type, ChannelInterface $channel, TagInterface $tag, int $limit): array;
 
-    public function existsOneByTypeAndChannelAndSlug(string $slug, string $localeCode, string $type, ChannelInterface $channel, array $excludedArticles = []): bool;
+    /**
+     * @return ArticleInterface[]
+     */
+    public function findAllEnabledAndPublishedByTags(string $localeCode, ?string $type, ChannelInterface $channel, array $tags, int $limit): array;
 
-    public function findOnePublishedBySlug(string $slug, string $localeCode, string $type, ChannelInterface $channel): ?ArticleInterface;
+    public function existsOneByTypeAndChannelAndSlug(string $slug, string $localeCode, ?string $type, ChannelInterface $channel, array $excludedArticles = []): bool;
 
-    public function findAllEnabledAndPublishedByAuthor(string $localeCode, string $type, ChannelInterface $channel, AuthorInterface $author, int $limit): array;
+    public function findOnePublishedBySlug(string $slug, string $localeCode, ?string $type, ChannelInterface $channel): ?ArticleInterface;
 
-    public function findEnabledAndPublishedByIds(array $articleIds, string $localeCode, string $type, ChannelInterface $channel, ?int $number = null): array;
+    public function findAllEnabledAndPublishedByAuthor(string $localeCode, ?string $type, ChannelInterface $channel, AuthorInterface $author, int $limit): array;
+
+    public function findEnabledAndPublishedByIds(array $articleIds, string $localeCode, ?string $type, ChannelInterface $channel, ?int $number = null): array;
 }

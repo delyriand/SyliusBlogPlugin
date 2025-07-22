@@ -57,7 +57,7 @@ final class ArticlesSelectionUiElement implements UiElementInterface
             $articles = $this->articleRepository->findEnabledAndPublishedByIds(
                 $articleIds,
                 $this->localeContext->getLocaleCode(),
-                ArticleInterface::BLOG_TYPE,
+                null,
                 $this->channelContext->getChannel()
             );
             foreach ($articlesArray as $articleArray) {

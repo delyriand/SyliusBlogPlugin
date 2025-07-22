@@ -31,11 +31,15 @@ final class ArticlesByTagsUiElement implements UiElementInterface
     ) {
     }
 
-    public function getArticles(array $tags, int $limit): array
+    public function getArticles(array $tags, int $limit, ?string $type = null): array
     {
+        if (null !== $type && !\in_array($type, ArticleInterface::TYPES, true)) {
+            $type = null;
+        }
+
         return $this->articleRepository->findAllEnabledAndPublishedByTags(
             $this->localeContext->getLocaleCode(),
-            ArticleInterface::BLOG_TYPE,
+            $type,
             $this->channelContext->getChannel(),
             $tags,
             $limit

@@ -65,16 +65,8 @@ monsieurbiz_blog:
         banner:
             preview: Preview
     ui_element:
-        case_studies_ui_element:
-            title: Case studies Element
-            description: Display a list of case studies.
-            fields:
-                title: Title
-                case_studies: Case studies
-                case_study: Case study
-                position: Position
         articles_selection_ui_element:
-            title: Articles selection Element
+            title: Articles selection
             description: Display a list of manually selected articles.
             fields:
                 title: Title
@@ -84,16 +76,22 @@ monsieurbiz_blog:
                 article: Article
                 position: Position
         articles_by_tags_ui_element:
-            title: Articles by tags Element
+            title: Articles by tags
             description: Display a list of articles by tags.
             fields:
                 title: Title
                 tags: Tags
+                type_filter: Type filter
                 limit: Limit
                 button_label: Button label
                 button_url: Button url
             help:
                 limit: The maximum number of articles to display
+            choices:
+                type_filter:
+                    all: All
+                    blog: Blog articles
+                    case_study: Case study
     articles:
         display:
             label: Display

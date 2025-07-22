@@ -20,6 +20,7 @@ use Sylius\Bundle\ResourceBundle\Form\DataTransformer\ResourceToIdentifierTransf
 use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -32,6 +33,8 @@ final class ArticleSelectionElementType extends AbstractType
         private readonly ArticleRepositoryInterface $articleRepository,
         private readonly ChannelContextInterface $channelContext,
         private readonly LocaleContextInterface $localeContext,
+        #[Autowire('%env(bool:MONSIEURBIZ_SYLIUS_BLOG_ENABLE_CASE_STUDIES)%')]
+        private bool $enableCaseStudies,
     ) {
     }
 
@@ -44,16 +47,29 @@ final class ArticleSelectionElementType extends AbstractType
             ->add('article', EntityType::class, [
                 'class' => Article::class,
                 'label' => 'monsieurbiz_blog.ui_element.articles_selection_ui_element.fields.article',
-                'choice_label' => fn (Article $article) => $article->getTitle(),
+                'choice_label' => fn (Article $article) => '[' . $article->getType() . '] ' . $article->getTitle(),
                 'choice_value' => fn (?Article $article) => $article?->getId(),
                 'required' => true,
+                'autocomplete' => true,
                 'query_builder' => function (ArticleRepositoryInterface $articleRepository) {
-                    return $articleRepository->createShopListQueryBuilderByType(
+                    $queryBuilder = $articleRepository->createShopListQueryBuilderByType(
                         $this->localeContext->getLocaleCode(),
-                        ArticleInterface::BLOG_TYPE,
+                        null,
                         $this->channelContext->getChannel(),
                         null
-                    )->orderBy('translation.title');
+                    );
+                    if (!$this->enableCaseStudies) {
+                        $queryBuilder
+                            ->andWhere('ba.type != :caseStudyType')
+                            ->setParameter('caseStudyType', ArticleInterface::CASE_STUDY_TYPE)
+                        ;
+                    }
+                    $queryBuilder
+                        ->orderBy('ba.type')
+                        ->addOrderBy('translation.title')
+                    ;
+
+                    return $queryBuilder;
                 },
             ])
             ->add('position', IntegerType::class, [

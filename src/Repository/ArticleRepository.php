@@ -22,18 +22,25 @@ use Sylius\Component\Channel\Model\ChannelInterface;
 
 final class ArticleRepository extends EntityRepository implements ArticleRepositoryInterface
 {
-    public function createListQueryBuilderByType(string $localeCode, string $type): QueryBuilder
+    public function createListQueryBuilderByType(string $localeCode, ?string $type): QueryBuilder
     {
-        return $this->createQueryBuilder('ba')
+        $queryBuilder = $this->createQueryBuilder('ba')
             ->addSelect('translation')
             ->leftJoin('ba.translations', 'translation', 'WITH', 'translation.locale = :localeCode')
             ->setParameter('localeCode', $localeCode)
-            ->andWhere('ba.type = :type')
-            ->setParameter('type', $type)
         ;
+
+        if (null !== $type) {
+            $queryBuilder
+                ->andWhere('ba.type = :type')
+                ->setParameter('type', $type)
+            ;
+        }
+
+        return $queryBuilder;
     }
 
-    public function createShopListQueryBuilderByType(string $localeCode, string $type, ChannelInterface $channel, ?TagInterface $tag): QueryBuilder
+    public function createShopListQueryBuilderByType(string $localeCode, ?string $type, ChannelInterface $channel, ?TagInterface $tag): QueryBuilder
     {
         $queryBuilder = $this->createListQueryBuilderByType($localeCode, $type)
             ->andWhere(':channel MEMBER OF ba.channels')
@@ -53,7 +60,7 @@ final class ArticleRepository extends EntityRepository implements ArticleReposit
         return $queryBuilder;
     }
 
-    public function findAllEnabledAndPublishedByTag(string $localeCode, string $type, ChannelInterface $channel, TagInterface $tag, int $limit): array
+    public function findAllEnabledAndPublishedByTag(string $localeCode, ?string $type, ChannelInterface $channel, TagInterface $tag, int $limit): array
     {
         return $this->createShopListQueryBuilderByType($localeCode, $type, $channel, $tag)
             ->setMaxResults($limit)
@@ -62,7 +69,7 @@ final class ArticleRepository extends EntityRepository implements ArticleReposit
         ;
     }
 
-    public function findAllEnabledAndPublishedByTags(string $localeCode, string $type, ChannelInterface $channel, array $tags, int $limit): array
+    public function findAllEnabledAndPublishedByTags(string $localeCode, ?string $type, ChannelInterface $channel, array $tags, int $limit): array
     {
         $queryBuilder = $this->createListQueryBuilderByType($localeCode, $type)
             ->andWhere(':channel MEMBER OF ba.channels')
@@ -87,7 +94,7 @@ final class ArticleRepository extends EntityRepository implements ArticleReposit
         ;
     }
 
-    public function existsOneByTypeAndChannelAndSlug(string $slug, string $localeCode, string $type, ChannelInterface $channel, array $excludedArticles = []): bool
+    public function existsOneByTypeAndChannelAndSlug(string $slug, string $localeCode, ?string $type, ChannelInterface $channel, array $excludedArticles = []): bool
     {
         $queryBuilder = $this->createListQueryBuilderByType($localeCode, $type)
             ->andWhere('translation.slug = :slug')
@@ -108,7 +115,7 @@ final class ArticleRepository extends EntityRepository implements ArticleReposit
         return (bool) $queryBuilder->getQuery()->getOneOrNullResult();
     }
 
-    public function findOnePublishedBySlug(string $slug, string $localeCode, string $type, ChannelInterface $channel): ?ArticleInterface
+    public function findOnePublishedBySlug(string $slug, string $localeCode, ?string $type, ChannelInterface $channel): ?ArticleInterface
     {
         return $this->createListQueryBuilderByType($localeCode, $type)
             ->andWhere('translation.slug = :slug')
@@ -123,7 +130,7 @@ final class ArticleRepository extends EntityRepository implements ArticleReposit
         ;
     }
 
-    public function findAllEnabledAndPublishedByAuthor(string $localeCode, string $type, ChannelInterface $channel, AuthorInterface $author, int $limit): array
+    public function findAllEnabledAndPublishedByAuthor(string $localeCode, ?string $type, ChannelInterface $channel, AuthorInterface $author, int $limit): array
     {
         return $this->createListQueryBuilderByType($localeCode, $type)
             ->andWhere(':channel MEMBER OF ba.channels')
@@ -140,7 +147,7 @@ final class ArticleRepository extends EntityRepository implements ArticleReposit
         ;
     }
 
-    public function findEnabledAndPublishedByIds(array $articleIds, string $localeCode, string $type, ChannelInterface $channel, ?int $number = null): array
+    public function findEnabledAndPublishedByIds(array $articleIds, string $localeCode, ?string $type, ChannelInterface $channel, ?int $number = null): array
     {
         $queryBuilder = $this->createShopListQueryBuilderByType($localeCode, $type, $channel, null)
             ->andWhere('ba.id in (:articleIds)')

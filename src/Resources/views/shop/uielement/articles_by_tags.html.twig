@@ -12,6 +12,6 @@ element methods:
     getArticles
 #}
 
-{% set articles = ui_element.getArticles(element.tags|default([]), element.limit|default(3)) %}
+{% set articles = ui_element.getArticles(element.tags|default([]), element.limit|default(3), element.typeFilter|default(null)) %}
 
 {{ include('@MonsieurBizSyliusBlogPlugin/Admin/uielement/articles_cards.html.twig') }}
