@@ -13,7 +13,7 @@ This plugin adds a blog to your Sylius project. It allows you to create blog art
 
 | Sylius Version | PHP Version     |
 |----------------|-----------------|
-| 2.0            | 8.2 - 8.3       |
+| 2.0, 2.1       | 8.2 - 8.3       |
 
 ℹ️ For Sylius 1.x, see our [1.x branch](https://github.com/monsieurbiz/SyliusBlogPlugin/tree/1.x) and all 1.x releases.
 
