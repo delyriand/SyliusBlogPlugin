@@ -33,8 +33,8 @@ use Symfony\UX\LiveComponent\Form\Type\LiveCollectionType;
     description: 'monsieurbiz_blog.ui_element.articles_selection_ui_element.description',
     uiElement: 'MonsieurBiz\SyliusBlogPlugin\UiElement\ArticlesSelectionUiElement',
     templates: new TemplatesUiElement(
-        adminRender: '@MonsieurBizSyliusBlogPlugin/admin/uielement/articles_selection.html.twig',
-        frontRender: '@MonsieurBizSyliusBlogPlugin/shop/uielement/articles_selection.html.twig',
+        adminRender: '@MonsieurBizSyliusBlogPlugin/admin/ui_element/articles_selection.html.twig',
+        frontRender: '@MonsieurBizSyliusBlogPlugin/shop/ui_element/articles_selection.html.twig',
     ),
     wireframe: 'articles-selection',
     tags: ['blog', 'articles-selection'],
