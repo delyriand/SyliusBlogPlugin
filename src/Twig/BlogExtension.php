@@ -17,13 +17,15 @@ use MonsieurBiz\SyliusBlogPlugin\Entity\TagInterface;
 use MonsieurBiz\SyliusBlogPlugin\Repository\TagRepositoryInterface;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
 use Twig\Extension\AbstractExtension;
+use Twig\Extension\GlobalsInterface;
 use Twig\TwigFunction;
 
-final class BlogExtension extends AbstractExtension
+final class BlogExtension extends AbstractExtension implements GlobalsInterface
 {
     public function __construct(
         private TagRepositoryInterface $tagRepository,
         private LocaleContextInterface $localeContext,
+        private bool $enableCaseStudies,
     ) {
     }
 
@@ -40,5 +42,12 @@ final class BlogExtension extends AbstractExtension
     public function getTags(string $type): array
     {
         return $this->tagRepository->createEnabledListQueryBuilderByType($this->localeContext->getLocaleCode(), $type)->getQuery()->getResult();
+    }
+
+    public function getGlobals(): array
+    {
+        return [
+            'monsieurbiz_blog_enable_case_studies' => $this->enableCaseStudies,
+        ];
     }
 }

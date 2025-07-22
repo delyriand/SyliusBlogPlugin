@@ -14,12 +14,10 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusBlogPlugin\EventListener;
 
 use Sylius\Bundle\UiBundle\Menu\Event\MenuBuilderEvent;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 final class AdminMenuListener
 {
     public function __construct(
-        #[Autowire('%env(bool:MONSIEURBIZ_SYLIUS_BLOG_ENABLE_CASE_STUDIES)%')]
         private bool $enableCaseStudies,
     ) {
     }

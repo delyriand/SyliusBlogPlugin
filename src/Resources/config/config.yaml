@@ -1,3 +1,6 @@
+parameters:
+    monsieurbiz_blog.enable_case_studies: '%env(bool:MONSIEURBIZ_SYLIUS_BLOG_ENABLE_CASE_STUDIES)%'
+
 imports:
     - { resource: 'resources.yaml' }
     - { resource: 'sylius/*.yaml' }

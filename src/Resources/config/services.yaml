@@ -3,6 +3,8 @@ services:
         autowire: true
         autoconfigure: true
         public: false
+        bind:
+            bool $enableCaseStudies: '%monsieurbiz_blog.enable_case_studies%'
 
     MonsieurBiz\SyliusBlogPlugin\:
         resource: '../../*'

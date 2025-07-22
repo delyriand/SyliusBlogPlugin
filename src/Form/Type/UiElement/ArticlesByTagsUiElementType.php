@@ -22,7 +22,6 @@ use MonsieurBiz\SyliusRichEditorPlugin\Attribute\TemplatesUiElement;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\LinkType;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -49,7 +48,6 @@ class ArticlesByTagsUiElementType extends AbstractType
     public function __construct(
         private readonly TagRepositoryInterface $tagRepository,
         private readonly LocaleContextInterface $localeContext,
-        #[Autowire('%env(bool:MONSIEURBIZ_SYLIUS_BLOG_ENABLE_CASE_STUDIES)%')]
         private bool $enableCaseStudies,
     ) {
     }
